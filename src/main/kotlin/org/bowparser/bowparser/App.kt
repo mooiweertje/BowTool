@@ -249,5 +249,15 @@ class App : Application() {
 }
 
 fun main(args: Array<String>) {
+    // Zorg dat de juiste native geladen wordt voordat jSerialComm/SerialPort wordt aangeroepen
+	println("os.name = ${System.getProperty("os.name")}")
+	println("os.arch = ${System.getProperty("os.arch")}")
+	println("java.version = ${System.getProperty("java.version")}")
+	println("java.library.path = ${System.getProperty("java.library.path")}")
+	println("user.dir = ${System.getProperty("user.dir")}")
+	println("java.io.tmpdir = ${System.getProperty("java.io.tmpdir")}")
+
+    NativeLoader.ensureCorrectJSerialCommNativeLoaded()
+
     Application.launch(App::class.java, *args)
 }
